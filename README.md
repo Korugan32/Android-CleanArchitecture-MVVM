@@ -1,7 +1,7 @@
 ## Android Clean Architecture MVVM
 ![Android_logo_2023_(stacked)](https://github.com/user-attachments/assets/c62fca53-877d-4b8e-83f0-b93efd703290)
 
-Android uygulama geliştirmede modern mimarilerden biri olan Clean Architecture ve MVVM (Model-View-ViewModel) desenininden bahsedeceğim. Clean Architecture, uygulamanın farklı bileşenlerini bağımsız hale getiren, sürdürülebilir ve test edilebilir bir yapıyı benimseyerek, kodun daha yönetilebilir olmasını sağlar. MVVM ise, kullanıcı arayüzü (UI) ile iş mantığını birbirinden ayıran bir desen olup, UI'nin iş mantığından bağımsız olarak çalışmasını sağlar. Android'deki Clean Architecture yapısı genellikle dört ana katmandan oluşur: Presentation, Domain, Data, ve Util. MVVM mimarisi ise özellikle Presentation katmanında kullanılır. Bu yapılar birlikte, uygulamanın ölçeklenebilirliğini artırır, test edilebilirliğini sağlar ve bakımını kolaylaştırır.
+Android uygulama geliştirmede modern mimarilerden biri olan Clean Architecture ve MVVM (Model-View-ViewModel) Clean Architecture, uygulamanın farklı bileşenlerini bağımsız hale getiren, sürdürülebilir ve test edilebilir bir yapıyı benimseyerek, kodun daha yönetilebilir olmasını sağlar. MVVM ise, kullanıcı arayüzü (UI) ile iş mantığını birbirinden ayıran bir desen olup, UI'nin iş mantığından bağımsız olarak çalışmasını sağlar. Android'deki Clean Architecture yapısı genellikle dört ana katmandan oluşur: Presentation, Domain, Data, ve Util. MVVM mimarisi ise özellikle Presentation katmanında kullanılır. Bu yapılar birlikte, uygulamanın ölçeklenebilirliğini artırır, test edilebilirliğini sağlar ve bakımını kolaylaştırır.
 
 ## Basit Bir Clean Architecture Akış Diyagramı
 
