@@ -54,46 +54,46 @@ flowchart TD
     DC --> DB
 ```
 # Android için Clean Architecture paket yapısı
-- data
+- **data**
     - local
     - remote
     - mapper
     - repository
-- di
-- domain
+- **di**
+- **domain**
     - repository
     - model
     - usecase
-- presentation
+- **presentation**
     - common
       - navigation
       - components
     - viewmodel
     - screens
       - home
-- util
+- **util**
 
 # Data
 Data paketi, uygulamanın veri yönetimi ve veri kaynaklarıyla doğrudan etkileşim kurduğu katmandır. Bu katmanda, veri modelleri, veri kaynaklarına erişim sağlayan sınıflar ve veriyi dönüştüren (mapper) sınıflar bulunur.
-- Local
+- **Local**
     - Local paketinin içerisinde yerel veri kaynaklarına erişim sağlanır. Bunlar kotlin için örneğin room kütüphanesinin databaseleridir.
-- Remote
-    - Remote paketinin içerisinde uzak veri uzak veri kaynaklarına erişim sağlanır. API'den veri çekme DTO(Data Transfering Object) benzeri şeyler bu katmanda yer alır.
-- Mapper
+- **Remote**
+    - Remote paketinin içerisinde uzak veri uzak veri kaynaklarına erişim sağlanır. API'den veri çekme `DTO(Data Transfering Object)` benzeri şeyler bu katmanda yer alır.
+- **Mapper**
     - Mapper kaynağı Data paketeinin içinde veya bunlardan bağımsız başka bir katman olarak tanımlanabilir. Mapper katmanı veriyi başka bir katmana dönüştürür. Örneğin Remote paketinin içinde bulunan bir API'yi çektik fakat uygulamada kullandığımız ve kullanmadığımız verileride getirdi bu durumda gelen verileri mapleyip, Domain Paketinin içindeki Modelimize dönüştürürüz.
 
 # DI(Dependency Injection)
 
-DI (Dependency Injection) paketi, Dependency Injection (Bağımlılık Enjeksiyonu) yapılandırmalarını içerir. Repository, Use Case, Remote ve Local veri kaynakları gibi bağımlılıkları sağlayan Hilt/Dagger modülleri burada yer alır. Bu modüller, ilgili bağımlılıkları sağlayarak uygulamanın diğer bölümlerinde ihtiyaç duyulan sınıfların otomatik olarak enjekte edilmesine olanak tanır.
+DI (Dependency Injection) paketi, Dependency Injection (Bağımlılık Enjeksiyonu) yapılandırmalarını içerir. `Repository`, `Usecase`, `Remote` ve `Local` veri kaynakları gibi bağımlılıkları sağlayan Hilt/Dagger modülleri burada yer alır. Bu modüller, ilgili bağımlılıkları sağlayarak uygulamanın diğer bölümlerinde ihtiyaç duyulan sınıfların otomatik olarak enjekte edilmesine olanak tanır.
 
 # Domain 
 
 Domain paketi uygulamanın iş mantığı ve temel modellerini içerir kısaca iş mantığı kısmı diyebiliriz. Domain paketinde hiçbir zaman Data ve Presentation kısımlarına bağımlılık olmaz.
-- Repository
-  - Domain paketi içerisinde bulunan repository kısmı Data paketindeki repositoriden farklıdır. Bu paketteki Repositoryler Interfacedir ve Data katmanında bulunan Repositoryler tarafından Implement edilir. Isimlendirmeler Domain paketi için Repository, Data paketi için RepositoryImpl olarak yapılır.
-- Model
+- **Repository**
+  - Domain paketi içerisinde bulunan repository kısmı Data paketindeki repositoriden farklıdır. Bu paketteki Repositoryler Interfacedir ve Data katmanında bulunan Repositoryler tarafından Implement edilir. Isimlendirmeler Domain paketi için `Repository`, Data paketi için `RepositoryImpl` olarak yapılır.
+- **Model**
   - Domain paketinde kullanılan veri modellerini içerir. Data/Remote aracılığıyla gelen veriler Data/Mapper altında dönüştürülerek bu katmandaki Modele aktarılır.
-- Usecase
+- **Usecase**
   - Uygulamanın belli bir işlevselliğini getiren iş mantıklarını içeren pakettir. Örneğin Data/Remote içerisinden verileri getirir.
 
 # Util
@@ -105,40 +105,40 @@ Util paketi, uygulamanın her katmanında kullanılabilecek yardımcı sınıfla
 # Presentation
 
 Presentation paketi, uygulamanın kullanıcı arayüzüyle etkileşimde olduğu katmandır. MVVM (Model-View-ViewModel) yapısını kullanarak ViewModel’leri ve UI bileşenlerini içerir.
-- Viewmodel
-  - Her bir ekran için bir ViewModel sınıfı tanımlanır. ViewModel sınıfları, UseCase sınıflarını çağırarak veriyi elde eder ve UI’a uygun hale getirir. Bu ViewModel’ler, Dependency Injection ile ilgili UseCase’leri alır ve gerekli işlemleri yönetir.
-- Common
+- **Viewmodel**
+  - Her bir ekran için bir ViewModel sınıfı tanımlanır. ViewModel sınıfları, `Usecase` sınıflarını çağırarak veriyi elde eder ve UI’a uygun hale getirir. Bu ViewModel’ler, Dependency Injection ile ilgili UseCase’leri alır ve gerekli işlemleri yönetir.
+- **Common**
   - Bu kısımda Navigation ve Component gibi çoğu ekran tarafından kullanılan fonksiyonları ve dosyaları barındırır.
-- Screens
+- **Screens**
   -  Bu pakette kullanıcya sunulan UI sayfaları yer alır. Örneğin Home sayfası için bir paket açılır, sadece home paketinde kullanılan Componentler ve sayfa burada yer alır.
-  -  
+    
 # MVVM(Model-View-ViewModel)
 
 ![unnamed](https://github.com/user-attachments/assets/ee166b00-8dfe-4c62-a81a-f6e2fbda07d9)
 
 ViewModel, MVVM (Model-View-ViewModel) mimarisinde UI (kullanıcı arayüzü) ile iş mantığı arasındaki bağlantıyı sağlayan bileşendir. Özellikle Android uygulamalarında kullanıcının uygulama ile etkileşime geçtiği süreçleri daha yönetilebilir hale getirmek için kullanılır.
 
-- Veriyi Yönetme ve Sağlama:
+- **Veriyi Yönetme ve Sağlama:**
   
   - ViewModel, UI’nın ihtiyaç duyduğu veriyi LiveData, StateFlow, MutableState gibi gözlemlenebilir (observable) veri türleri kullanarak sağlar.
   - Örneğin, bir kullanıcı arayüzünde bir listede gösterilecek veriyi ViewModel alır ve ViewModel, UI’ya bu veriyi sağlamaktan sorumludur. Böylece, verinin alınması veya güncellenmesi gerektiğinde yalnızca ViewModel güncellenir ve UI da bu değişiklikleri gözlemleyerek kendini günceller.
 
-- UI Durumunu Koruma:
+- **UI Durumunu Koruma:**
 
   - Android’in yaşam döngüsüne duyarlı olarak, ViewModel ekran döndürüldüğünde veya uygulama arka plana alınıp yeniden açıldığında veri kaybını önler.
   - ViewModel, aktivite veya fragment yeniden oluşturulsa bile yaşam döngüsünden bağımsız olarak varlığını koruduğu için UI durumu kalıcı olur.
 
-- Veri İşlemlerini ve İş Mantığını Yönetme:
+- **Veri İşlemlerini ve İş Mantığını Yönetme:**
 
   - İş mantığına göre Repository ya da UseCase sınıflarını çağırarak veri işlemlerini yönetir.
   - Örneğin, bir ürün listesi gösteriliyorsa ViewModel ilgili UseCase veya Repository sınıfını çağırarak ürünleri getirir. Bu veri işlemlerini UI katmanında yapmak yerine ViewModel üzerinden yönetmek, kodun okunabilirliğini artırır ve test edilebilirliğini kolaylaştırır.
 
-- UI’ı Güncel Tutma:
+- **UI’ı Güncel Tutma:**
 
   - ViewModel, iş mantığında veya veri akışında değişiklik olduğunda UI’yı günceller.
   - Örneğin, bir API çağrısı yapıldığında veya yerel veritabanında bir güncelleme gerçekleştiğinde bu değişikliği UI’ya bildirir. UI katmanı sadece ViewModel’den gelen değişikliklere göre güncellenir ve veri akışını doğrudan kontrol etmez.
 
-- Uygulamanın UI Katmanını Temiz Tutma:
+- **Uygulamanın UI Katmanını Temiz Tutma:**
 
   - ViewModel, iş mantığını ve veri yönetimini üstlenerek UI katmanında bu işlemlerin yapılmasını önler. Bu sayede UI sınıfları (örneğin Activity veya Fragment) yalnızca kullanıcı etkileşimlerini yakalar ve bu etkileşimleri ViewModel’e iletir.
   - UI katmanını yalnızca görselleştirmeye odaklayarak daha modüler ve sorumlulukları belirli bir yapı sağlar.
@@ -176,6 +176,7 @@ flowchart TD
     C -- No --> G[Return Data to ViewModel]
     G --> H[Update UI]
 ```
+## Kaynaklar
 - [Android Developer Documentation](https://developer.android.com) Android uygulama geliştirme konusunda resmi kaynaklardan biri, Android için gerekli tüm temel belgeleri, örnekleri ve rehberleri sunar.
 
 - [Jetpack Compose Documentation](https://developer.android.com/jetpack/compose), Android için modern UI araçları sunar. Bu kaynak, kullanıcı arayüzü geliştirmek için gerekli bileşenleri ve araçları sunarak Compose hakkında detaylı bilgiler sağlar.
@@ -265,13 +266,13 @@ The Data package directly interacts with data sources and handles data managemen
 - **Local**
     - This package accesses local data sources, such as Room databases for Kotlin.
 - **Remote**
-    - This package accesses remote data sources, such as APIs. Data Transfer Objects (DTOs) are often used here.
+    - This package accesses remote data sources, such as APIs. `Data Transfer Objects (DTOs)` are often used here.
 - **Mapper**
     - The Mapper can be defined within the Data package or as an independent layer. It transforms data for other layers. For example, data from the Remote package can be mapped and converted to the model in the Domain package.
 
 ### DI (Dependency Injection)
 
-The DI (Dependency Injection) package contains the configurations for Dependency Injection. Modules for Hilt/Dagger provide dependencies for repositories, use cases, and data sources, allowing these classes to be injected automatically where needed in the application.
+The DI (Dependency Injection) package contains the configurations for Dependency Injection. Modules for Hilt/Dagger provide dependencies for `repositories`, `use cases`, and `data sources`, allowing these classes to be injected automatically where needed in the application.
 
 ### Domain
 
