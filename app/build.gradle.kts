@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
     id("kotlin-kapt")
+    alias(libs.plugins.hilt)
 }
 
 android {
