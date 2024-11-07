@@ -1,4 +1,4 @@
-package com.korugan.androidcleanarchitecture.ui.theme
+package com.korugan.androidcleanarchitecture.presentation.ui.theme
 
 import android.app.Activity
 import android.os.Build
