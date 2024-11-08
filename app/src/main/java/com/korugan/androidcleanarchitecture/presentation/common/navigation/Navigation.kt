@@ -4,8 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.korugan.androidcleanarchitecture.presentation.home.HomeScreen
-import com.korugan.androidcleanarchitecture.presentation.list.ListScreen
+import com.korugan.androidcleanarchitecture.presentation.screen.home.HomeScreen
+import com.korugan.androidcleanarchitecture.presentation.screen.list.ListScreen
 
 @Composable
 fun Navigation() {
