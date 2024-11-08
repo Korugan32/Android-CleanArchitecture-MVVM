@@ -40,7 +40,7 @@ class ManageCocktailViewModel @Inject constructor(
         }
     }
 
-    private fun deleteAllCocktails(){
+    fun deleteAllCocktails(){
         viewModelScope.launch {
             deleteAllDatabaseUseCase()
         }
