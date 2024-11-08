@@ -1,4 +1,4 @@
-package com.korugan.androidcleanarchitecture.presentation.home.viewmodel
+package com.korugan.androidcleanarchitecture.presentation.screen.home.viewmodel
 
 import com.korugan.androidcleanarchitecture.domain.model.Cocktail
 
